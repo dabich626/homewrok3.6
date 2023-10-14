@@ -1,9 +1,12 @@
 package ru.hogwarts.school.model;
 
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 public class Faculty {
 
+@id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name, color;
 
@@ -23,12 +26,12 @@ public class Faculty {
         if (o == null || getClass() != o.getClass())
             return false;
         Faculty faculty = (Faculty) o;
-        return id == faculty.id && Objects.equals(name, faculty.name) && Objects.equals(color, faculty.color);
+        return id == faculty.id && Objects.equals(id, faculty.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, color);
+        return Objects.hash(id);
     }
 
     @Override

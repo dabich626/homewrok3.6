@@ -3,44 +3,48 @@ package ru.hogwarts.school.service;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
+import repository.FacultyRepository;
 import ru.hogwarts.school.model.Faculty;
 
 @Service
 public class FacultyService {
 
-    private final HashMap‹Long, Faculty› faculties = new HashMap‹›();
-    private long count = 0;
+    public FacultyService(FacultyRepository repository) {
+        this.repository = repository;
+    }
+
+    private final FacultyRepository repository;
 
     public Faculty addFaculty(Faculty faculty) {
-        faculty.setId(count++);
-        faculties.put(faculty.getId(), faculty);
-        return faculty;
+        Faculty saved = repository.save(faculty);
     }
 
     public Faculty findFaculty(long id) {
-        return faculties.get(id);
+        return repository.findById(id).orElse(null);
     }
 
     public Faculty editFaculty(Faculty faculty) {
-        if (!faculties.containsKey(faculty.getId())) {
-            return null;
-        }
-        faculties.put(faculty.getId(), faculty);
-        return faculty;
+
+        repository.findById(faculty.getId())
+                .map(
+                        entity ->
+                        {
+                            entity.setColor(faculty.getColor());
+                            entity.setName(faculty.getName());
+                            return repository.save(entity);
+
+
+                        }
+                ).orElse(null);
     }
 
-    public Faculty deleteFaculty(long id) {
-        return faculties.remove(id);
+    public void  deleteFaculty(long id) {
+        return repository.deleteById(id).orElse(null);
     }
 
-    // Service
+
     public Collection‹Faculty› findByColor(String color) {
-        ArrayList‹Faculty› result = new ArrayList‹›();
-        for (Faculty faculty : faculties.values()) {
-            if (Objects.equals(faculty.getColor(), color)) {
-                result.add(faculty);
-            }
-        }
-        return result;
-    }
-}
+
+        return repository.findAllByColor(color)
+
+}}

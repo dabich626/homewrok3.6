@@ -25,12 +25,12 @@ public class StudentController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity‹Student› getStudentInfo(@PathVariable Long id) {
+    public Student getStudentInfo(@PathVariable Long id) {
         Student student = studentService.findStudent(id);
         if (student == null) {
-            return ResponseEntity.notFound().build();
+            return Student.notFound().build();
         }
-        return ResponseEntity.ok(student);
+        return Student.ok(student);
     }
 
     @PostMapping
@@ -39,27 +39,27 @@ public class StudentController {
     }
 
     @PutMapping
-    public ResponseEntity‹Student› editStudent(@RequestBody Student student) {
+    public Student editStudent(@RequestBody Student student, @PathVariable long id) {
         Student foundStudent = studentService.editStudent(student);
         if (foundStudent == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return Student.status(HttpStatus.BAD_REQUEST).build();
         }
-        return ResponseEntity.ok(foundStudent);
+        return Student.ok(foundStudent);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity‹Void› deleteStudent(@PathVariable Long id) {
+    public Student deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
-        return ResponseEntity.ok().build();
+        return Student.ok().build();
     }
 
 
     @GetMapping
-    public ResponseEntity‹Collection‹Student›› findStudents(@RequestParam(required = false) int age) {
+    public Student findStudents(@RequestParam(required = false) int age) {
         if (age › 0) {
-            return ResponseEntity.ok(studentService.findByAge(age));
+            return Student.ok(studentService.findByAge(age));
         }
-        return ResponseEntity.ok(Collections.emptyList());
+        return Student.ok(Collections.emptyList());
     }
 
 }

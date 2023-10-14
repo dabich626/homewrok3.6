@@ -3,43 +3,48 @@ package ru.hogwarts.school.service;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
+import repository.FacultyRepository;
+import repository.StudentRepository;
 import ru.hogwarts.school.model.Student;
 
 @Service
 public class StudentService {
 
-    private final HashMap‹Long, Student› students = new HashMap‹›();
-    private long count = 0;
-
-    public Student addStudent(Student student) {
-        student.setId(count++);
-        students.put(student.getId(), student);
-        return student;
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
     }
 
-    public Student findStudent(long id) {
-        return students.get(id);
+    private final StudentRepository repository;
+
+    public StudentRepository addStudent(Student student) {
+        Student saved = repository.save(student);
+    }
+
+    public Student findStudent(int age) {
+        return repository.findByAge(age).orElse(null);
     }
 
     public Student editStudent(Student student) {
-        if (!students.containsKey(student.getId())) {
-            return null;
-        }
-        students.put(student.getId(), student);
-        return student;
+
+        repository.findByAge(student.getAge())
+                .map(
+                        entity ->
+                        {
+                            entity.setColor(student.getAge());
+                            entity.setName(student.getName());
+                            return repository.save(entity);
+
+
+                        }
+                ).orElse(null);
     }
 
-    public Student deleteStudent(long id) {
-        return students.remove(id);
+    public void  deleteStudent(int age) {
+        return repository.deleteByAge(age).orElse(null);
     }
+
 
     public Collection‹Student› findByAge(int age) {
-        ArrayList‹Student› result = new ArrayList‹›();
-        for (Student student : students.values()) {
-            if (student.getAge() == age) {
-                result.add(student);
-            }
-        }
-        return result;
+        return repository.findByAge(age);
     }
 }
