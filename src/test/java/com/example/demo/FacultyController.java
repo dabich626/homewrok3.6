@@ -42,22 +42,18 @@ public class FacultyController {
     public Faculty editFaculty(@RequestBody Faculty faculty) {
         Faculty foundFaculty = facultyService.editFaculty(faculty);
         if (foundFaculty == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return Faculty.status(HttpStatus.BAD_REQUEST).build();
         }
-        return ResponseEntity.ok(foundFaculty);
+        return facultyService.editFaculty(faculty);
     }
 
     @DeleteMapping("{id}")
     public Faculty deleteFaculty(@PathVariable Long id) {
-        facultyService.deleteFaculty(id);
-        return ResponseEntity.ok().build();
+        return facultyService.deleteFaculty(id);
     }
     @GetMapping
-    public Faculty findFaculties(@RequestParam(required = false) String color) {
-        if (color != null && !color.isBlank()) {
-            return ResponseEntity.ok(facultyService.findByColor(color));
-        }
-        return ResponseEntity.ok(Collections.emptyList());
+    public Faculty findByNameOrColorFaculties(@RequestParam(required = false) String color, @RequestParam(required = false) String name) {
+        return service.findByNameOrColorFaculties(color);
     }
 
 }
