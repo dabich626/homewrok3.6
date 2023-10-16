@@ -1,6 +1,9 @@
 package ru.hogwarts.school.model;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.annotation.processing.Generated;
+import java.util.List;
 import java.util.Objects;
 
 public class Faculty {
@@ -9,6 +12,10 @@ public class Faculty {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name, color;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "faculty")
+    private List<Student> students;
 
     public Faculty() {
     }

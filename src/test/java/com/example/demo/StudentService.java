@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
@@ -46,5 +47,10 @@ public class StudentService {
 
     public Collection‹Student› findByAge(int age) {
         return repository.findByAge(age);
+    }
+
+    public Collection<Student> filteredByAgeBetween(int min, int max){
+
+        return repository.findAllByAgeBetween(min, max);
     }
 }
