@@ -1,6 +1,4 @@
-package ru.hogwarts.school.model;
-
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+package com.example.demo;
 
 import java.util.Objects;
 

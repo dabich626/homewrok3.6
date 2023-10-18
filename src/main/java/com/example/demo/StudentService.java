@@ -1,12 +1,10 @@
-package ru.hogwarts.school.service;
+package com.example.demo;
 
 import java.util.Collection;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 import repository.FacultyRepository;
 import repository.StudentRepository;
-import ru.hogwarts.school.model.Student;
 
 @Service
 public class StudentService {

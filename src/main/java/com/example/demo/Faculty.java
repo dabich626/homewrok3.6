@@ -1,8 +1,7 @@
-package ru.hogwarts.school.model;
+package com.example.demo;
 
 import net.minidev.json.annotate.JsonIgnore;
 
-import javax.annotation.processing.Generated;
 import java.util.List;
 import java.util.Objects;
 
