@@ -1,8 +1,17 @@
 select id
-from student
+from student;
 
 select color
-from faculty
+from faculty;
 
 select name, color
-from faculty
+from faculty;
+
+select name
+from faculty;
+
+select age
+from student;
+
+select student
+from faculty;
