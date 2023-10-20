@@ -53,4 +53,16 @@ public Collection<Faculty> filterByNameOrColor(String name, String color){
         return repository.findAllByNameOrColorIgnoreCase(name, color); 
 }
 
+    public Faculty findAllStudentsById(long id){
+        return repository.findAllStudentsById;
+    }
+
+    public Faculty getFaculty(long id) {
+
+        var studentTemporary = repository.findById(id).orElseThrow(() -> new StudentNotFoundException);
+
+        return studentTemporary.getFaculty();
+
+    }
+
 }
