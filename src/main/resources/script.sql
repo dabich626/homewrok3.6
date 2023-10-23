@@ -7,19 +7,22 @@ from faculty;
 select name, color
 from faculty;
 
-select student from faculty
-where age between (10,20);
+select *
+from student
+where age between 10 and 20;
 
-select name, count(name) from faculty
-GROUP BY name;
+select name
+from student;
 
-select name, count(name) from faculty
-group by name
-HAVING like '%o%';
+select name
+from student
+where name like '%o%';
 
-select  from student
-where name = id > age;
+select *
+from student
+where id > age;
 
-select  from faculty
+select *
+from student
 ORDER BY age;
 
