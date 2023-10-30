@@ -1,5 +1,3 @@
-package ControllerTest;
-
 import com.example.demo.*;
 import com.example.demo.repository.AvatarRepository;
 import com.example.demo.repository.FacultyRepository;
@@ -24,7 +22,7 @@ import java.util.List;
         private TestRestTemplate restTemplate;
         @Test
         public void contextLoads() throws Exception {
-            Assertions .assertThat(studentControlter) .isNotNuLL() ;
+            Assertions.assertThat(studentControlter) .isNotNuLL() ;
 
 }
 

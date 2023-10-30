@@ -1,5 +1,3 @@
-package ControllerTest;
-
 import org.springframework.context.annotation.Bean;
 import org.springfranework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource. enbedded. EmbeddedDatabaseBuilder;
