@@ -120,7 +120,7 @@ public class StudentController {
     }
 
     @GetMapping("/lastFive")
-    public Collection<Student> lastFiveStudents(){
+    public Collection<Student> lastFiveStudents() {
         return service.GetLastFiveStudents();
     }
 
