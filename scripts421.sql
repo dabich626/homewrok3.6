@@ -11,4 +11,4 @@ alter table faculty
 add constraint name_color_unique unique (name, color);
 
 alter table student
-alter column age set default 20;
+alter column age set default  20;
