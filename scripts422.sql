@@ -19,4 +19,4 @@ join faculty f on f.id = s.faculty_id;
 
 select s.name, s.id
 avatar a
-join student s on s.id =  a.student_id;
+join student s on s.id = a.student_id;
