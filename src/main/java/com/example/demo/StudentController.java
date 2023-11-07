@@ -108,6 +108,21 @@ public class StudentController {
             is.transferTo(os);
         }
     }
+
+    @GetMapping("/count")
+    public long getCount(){
+        return service.studentsCount();
+    }
+
+    @GetMapping("/averageAge")
+    public double averageAge(){
+        return service.getAverageAge();
+    }
+
+    @GetMapping("/lastFive")
+    public Collection<Student> lastFiveStudents(){
+        return service.GetLastFiveStudents();
+    }
 }
 
 
